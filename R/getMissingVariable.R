@@ -7,5 +7,9 @@ getMissingVariable <- function() {
    errorMessage <- geterrmessage()
    notFound <- ngettext(1L, "object '%s' not found", "", domain="R")
    pattern <- sub("'%s'", "'([^']+)'", sprintf("^.*%s.*$", notFound))
-   sub(pattern, "\\1", errorMessage)
+   if (grepl(pattern, errorMessage)) {
+      sub(pattern, "\\1", errorMessage)
+   } else {
+      NA_character_
+   }
 }

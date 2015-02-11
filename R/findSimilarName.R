@@ -10,6 +10,11 @@
 #' 
 #' @seealso agrep
 findSimilarName <- function(x, names, threshold=2) {
-   d <- adist(x, names)
-   names[d == min(d) & d <= threshold]
+   if (is.na(x)) {
+      character(0)
+   } else {
+      names <- na.omit(names)
+      d <- adist(x, names)
+      names[d == min(d) & d <= threshold]
+   }
 }

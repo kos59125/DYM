@@ -8,3 +8,4 @@ Maintainer: Kosei ABE <mail@recyclebin.jp>
 Description: Adds "Did You Mean" to the R interactive.
 License: BSD_3_clause + file LICENSE
 BugReports: https://github.com/kos59125/DYM/issues
+Suggests: testthat
