@@ -2,7 +2,14 @@
 #' 
 #' @param envir
 #'    The base environment to search variables.
-getNames <- function(envir=.GlobalEnv){
+getNames <- function(envir=.GlobalEnv, mode=c("obj", "fun", "lib")){
+   mode <- match.arg(mode)
+   
+   if (mode == "lib") {
+      packages <- installed.packages()
+      return(attr(packages, "dimnames")[[1L]])
+   }
+   
    current <- envir
    table <- character(0L)
    while (!identical(current, emptyenv())) {
@@ -11,6 +18,12 @@ getNames <- function(envir=.GlobalEnv){
       table <- union(table, variables)
       current <- parent.env(current)
    }
+   
+   ## FIXME: Bad performance
+#    if (mode == "fun") {
+#       table <- table[sapply(table, exists, envir=envir, mode="function")]
+#    }
+   
    sort(table)
 }
 

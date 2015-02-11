@@ -4,7 +4,7 @@
 \alias{getNames}
 \title{Retrieves available symbols in the specified environment.}
 \usage{
-getNames(envir = .GlobalEnv)
+getNames(envir = .GlobalEnv, mode = c("obj", "fun", "lib"))
 }
 \arguments{
 \item{envir}{The base environment to search variables.}

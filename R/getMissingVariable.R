@@ -6,12 +6,12 @@
 getMissingVariable <- function() {
    errorMessage <- geterrmessage()
 
-   errorTypes <- c("fun", "obj")
+   errorTypes <- c("obj", "fun", "lib")
    for (errorType in errorTypes) {
       class(errorMessage) <- errorType
       result <- findMissingVariable(errorMessage)
       if (!is.na(result)) {
-         return(as.character(result))
+         return(result)
       }
    }
    NA_character_
@@ -50,5 +50,11 @@ findMissingVariable.fun <- function(errorMessage) {
 findMissingVariable.obj <- function(errorMessage) {
    notFound <- gettext("object '%s' not found", domain="R")
    pattern <- makePattern(notFound, "'", "'")
+   findMissingVariable_common(errorMessage, notFound, pattern)
+}
+
+findMissingVariable.lib <- function(errorMessage) {
+   notFound <- gettextf("there is no package called %s", sQuote("%s"))
+   pattern <- makePattern(notFound, "\u2018", "\u2019")
    findMissingVariable_common(errorMessage, notFound, pattern)
 }
