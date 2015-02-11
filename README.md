@@ -39,3 +39,9 @@ append the following line to enable the feature:
 ```r
 options(error = suppressPackageStartupMessages(DYM::DYM))
 ```
+
+How does this work?
+-------------------
+
+[My blog post](http://blog.recyclebin.jp/archives/4439) explains how this package work (in Japanese/日本語).
+
