@@ -19,7 +19,7 @@ Examples
 --------
 
 ```r
-> library(RaaS)
+> library(DYM)
 Run options(error = DYM) to enable 'Did you mean' feature
 > options(error = DYM)
 > t_test
