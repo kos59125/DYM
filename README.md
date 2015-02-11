@@ -23,11 +23,11 @@ Examples
 Run options(error = DYM) to enable 'Did you mean' feature
 > options(error = DYM)
 > t_test
- Error: object 't_test' not found
- Did you mean: 't.test'
+Error: object 't_test' not found
+Did you mean: 't.test'
 > map
- Error: object 'map' not found
- Did you mean: ['mad', 'Map', 'max']
+Error: object 'map' not found
+Did you mean: ['mad', 'Map', 'max']
 ```
 
 Hints

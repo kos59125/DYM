@@ -18,6 +18,6 @@ DYM <- function() {
    if (length(names) > 0L) {
       message <- ngettext(length(names), "Did you mean: %s", "Did you mean: [%s]", domain="R-DYM")
       hints <- sapply(names, sprintf, fmt="'%s'")  # sQuote might be better
-      message(" ", sprintf(message, paste(hints, collapse=", ")))
+      message(sprintf(message, paste(hints, collapse=", ")))
    }
 }

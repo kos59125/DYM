@@ -20,8 +20,8 @@ msgstr ""
 
 msgid "Did you mean: %s"
 msgid_plural "Did you mean: [%s]"
-msgstr[0] "もしかして: %s"
-msgstr[1] "もしかして: [%s]"
+msgstr[0] " もしかして: %s"
+msgstr[1] " もしかして: [%s]"
 
 msgid "object '%s' not found"
 msgid_plural ""
