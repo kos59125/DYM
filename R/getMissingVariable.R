@@ -5,18 +5,50 @@
 #' and returns the name of the mistype if it is found.
 getMissingVariable <- function() {
    errorMessage <- geterrmessage()
-   
-   functionNotFound <- ngettext(1L, "could not find function \"%s\"", "", domain="R")
-   functionNotFoundPattern <- sub("\"%s\"", "\"([^\"]+)\"", sprintf("^.*%s.*$", functionNotFound))
 
-   objectNotFound <- ngettext(1L, "object '%s' not found", "", domain="R")
-   objectNotFoundPattern <- sub("'%s'", "'([^']+)'", sprintf("^.*%s.*$", objectNotFound))
-   
-   if (grepl(functionNotFoundPattern, errorMessage)) {
-      sub(functionNotFoundPattern, "\\1", errorMessage)
-   } else if (grepl(objectNotFoundPattern, errorMessage)) {
-      sub(objectNotFoundPattern, "\\1", errorMessage)
+   errorTypes <- c("fun", "obj")
+   for (errorType in errorTypes) {
+      class(errorMessage) <- errorType
+      result <- findMissingVariable(errorMessage)
+      if (!is.na(result)) {
+         return(as.character(result))
+      }
+   }
+   NA_character_
+}
+
+patternQuote <- function(x) {
+   gsub("(\\[|\\]|^)", "\\\\\\1", x)
+}
+
+makePattern <- function(notFound, quote.start, quote.end) {
+   pattern <- sprintf("%s%%s%s", quote.start, quote.end)
+   quoteCharacters <- unique(unlist(strsplit(c(quote.start, quote.end), "")))
+   capturedPattern <- paste(patternQuote(quoteCharacters), collapse="")
+   replacement <- sprintf("%s([^%s]+)%s", quote.start, capturedPattern, quote.end)
+   sub(pattern, replacement, sprintf("^.*%s.*$", notFound))
+}
+
+findMissingVariable <- function(errorMessage) {
+   UseMethod("findMissingVariable")
+}
+
+findMissingVariable_common <- function(errorMessage, notFound, pattern) {
+   if (grepl(pattern, errorMessage)) {
+      sub(pattern, "\\1", errorMessage)
    } else {
       NA_character_
    }
+}
+
+findMissingVariable.fun <- function(errorMessage) {
+   notFound <- gettext("could not find function \"%s\"", domain="R")
+   pattern <- makePattern(notFound, "\"", "\"")
+   findMissingVariable_common(errorMessage, notFound, pattern)
+}
+
+findMissingVariable.obj <- function(errorMessage) {
+   notFound <- gettext("object '%s' not found", domain="R")
+   pattern <- makePattern(notFound, "'", "'")
+   findMissingVariable_common(errorMessage, notFound, pattern)
 }
