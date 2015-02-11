@@ -4,9 +4,11 @@
 \alias{getNames}
 \title{Retrieves available symbols in the specified environment.}
 \usage{
-getNames(envir = .GlobalEnv, mode = c("obj", "fun", "lib"))
+getNames(mode, envir = .GlobalEnv)
 }
 \arguments{
+\item{mode}{The mode of misspelled name.}
+
 \item{envir}{The base environment to search variables.}
 }
 \description{

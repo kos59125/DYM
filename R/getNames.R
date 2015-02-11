@@ -1,13 +1,19 @@
 #' Retrieves available symbols in the specified environment.
 #' 
+#' @param mode
+#'    The mode of misspelled name.
 #' @param envir
 #'    The base environment to search variables.
-getNames <- function(envir=.GlobalEnv, mode=c("obj", "fun", "lib")){
-   mode <- match.arg(mode)
-   
+getNames <- function(mode, envir=.GlobalEnv){
+   ## library not found
    if (mode == "lib") {
       packages <- installed.packages()
       return(attr(packages, "dimnames")[[1L]])
+   }
+   
+   ## not an exported object
+   if (mode == "export") {
+      return(ls(envir=envir))
    }
    
    current <- envir

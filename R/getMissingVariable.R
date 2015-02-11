@@ -6,7 +6,7 @@
 getMissingVariable <- function() {
    errorMessage <- geterrmessage()
 
-   errorTypes <- c("obj", "fun", "lib")
+   errorTypes <- c("obj", "fun", "lib", "export")
    for (errorType in errorTypes) {
       class(errorMessage) <- errorType
       result <- findMissingVariable(errorMessage)
@@ -24,7 +24,7 @@ patternQuote <- function(x) {
 makePattern <- function(notFound, quote.start, quote.end) {
    pattern <- sprintf("%s%%s%s", quote.start, quote.end)
    quoteCharacters <- unique(unlist(strsplit(c(quote.start, quote.end), "")))
-   capturedPattern <- paste(patternQuote(quoteCharacters), collapse="")
+   capturedPattern <- paste0(patternQuote(quoteCharacters), collapse="")
    replacement <- sprintf("%s([^%s]+)%s", quote.start, capturedPattern, quote.end)
    sub(pattern, replacement, sprintf("^.*%s.*$", notFound))
 }
@@ -57,4 +57,17 @@ findMissingVariable.lib <- function(errorMessage) {
    notFound <- gettextf("there is no package called %s", sQuote("%s"))
    pattern <- makePattern(notFound, "\u2018", "\u2019")
    findMissingVariable_common(errorMessage, notFound, pattern)
+}
+
+findMissingVariable.export <- function(errorMessage) {
+   notFound <- gettextf("'%s' is not an exported object from 'namespace:%s'", "%s", "[^']+")
+   pattern <- makePattern(notFound, "'", "'")
+   variable <- findMissingVariable_common(errorMessage, notFound, pattern)
+   
+   notFound <- gettextf("'%s' is not an exported object from 'namespace:%s'", "[^']+", "([^']+)")
+   pattern <- paste0("^.*", notFound, ".*$", collapse="")
+   packageName <- sub(pattern, "\\1", errorMessage)
+   attr(variable, "package") <- asNamespace(packageName)
+   
+   variable
 }

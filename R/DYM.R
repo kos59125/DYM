@@ -14,7 +14,11 @@ NULL
 DYM <- function() {
    missingVariable <- getMissingVariable()
    if (!is.na(missingVariable)) {
-      availableVariables <- getNames(mode=class(missingVariable))
+      envir <- attr(missingVariable, "package")
+      if (is.null(envir)) {
+         envir <- .GlobalEnv
+      }
+      availableVariables <- getNames(class(missingVariable), envir)
       names <- findSimilarName(missingVariable, availableVariables)
       if (length(names) > 0L) {
          message <- ngettext(length(names), "Did you mean: %s", "Did you mean: [%s]", domain="R-DYM")
