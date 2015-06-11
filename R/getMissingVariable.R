@@ -64,10 +64,12 @@ findMissingVariable.export <- function(errorMessage) {
    pattern <- makePattern(notFound, "'", "'")
    variable <- findMissingVariable_common(errorMessage, notFound, pattern)
    
-   notFound <- gettextf("'%s' is not an exported object from 'namespace:%s'", "[^']+", "([^']+)")
-   pattern <- paste0("^.*", notFound, ".*$", collapse="")
-   packageName <- sub(pattern, "\\1", errorMessage)
-   attr(variable, "package") <- asNamespace(packageName)
+   if (!is.na(variable)) {
+      notFound <- gettextf("'%s' is not an exported object from 'namespace:%s'", "[^']+", "([^']+)")
+      pattern <- paste0("^.*", notFound, ".*$", collapse="")
+      packageName <- sub(pattern, "\\1", errorMessage)
+      attr(variable, "package") <- asNamespace(packageName)
+   }
    
    variable
 }
