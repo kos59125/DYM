@@ -1,7 +1,7 @@
 Package: DYM
 Type: Package
 Title: Did You Mean?
-Version: 0.1
+Version: 0.1.1
 Date: 2015-06-11
 Author: Kosei Abe
 Maintainer: Kosei Abe <mail@recyclebin.jp>
@@ -9,4 +9,4 @@ Description: Adds "Did You Mean" to the R interactive.
 License: BSD_3_clause + file LICENSE
 BugReports: https://github.com/kos59125/DYM/issues
 Suggests: testthat
-Encode:UTF-8
+Encoding:UTF-8
