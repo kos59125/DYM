@@ -6,7 +6,7 @@ Date: 2015-06-12
 Author: Kosei Abe
 Maintainer: Kosei Abe <mail@recyclebin.jp>
 Description:
-   This package adds "Did You Mean" feature to the R interactive.
+   Add a "Did You Mean" feature to the R interactive.
    With this package, error messages for misspelled input of variable names or package names
    suggest what you really want to do in addition to notification of the mistake.
 License: BSD_3_clause + file LICENSE
