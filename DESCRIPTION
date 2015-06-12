@@ -2,10 +2,13 @@ Package: DYM
 Type: Package
 Title: Did You Mean?
 Version: 0.1.1
-Date: 2015-06-11
+Date: 2015-06-12
 Author: Kosei Abe
 Maintainer: Kosei Abe <mail@recyclebin.jp>
-Description: Adds "Did You Mean" to the R interactive.
+Description:
+   This package adds "Did You Mean" feature to the R interactive.
+   With this package, error messages for misspelled input of variable names or package names
+   suggest what you really want to do in addition to notification of the mistake.
 License: BSD_3_clause + file LICENSE
 BugReports: https://github.com/kos59125/DYM/issues
 Suggests: testthat
