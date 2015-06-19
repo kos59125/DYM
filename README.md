@@ -9,6 +9,15 @@ Adds 'Did you mean' feature in the R interactive.
 Installation
 ------------
 
+[DYM package is now on CRAN](http://cran.r-project.org/package=DYM)!
+You can install the packege with the following command.
+
+```r
+install.packages("DYM")
+```
+
+Otherwise, you can get the latest version of the package from this repository:
+
 ```r
 #install.packages("devtools")
 
@@ -37,7 +46,7 @@ If you have `~/.Rprofile` file to load on startup,
 append the following line to enable the feature:
 
 ```r
-options(error = suppressPackageStartupMessages(DYM::DYM))
+options(error = DYM::DYM)
 ```
 
 How does this work?
