@@ -1,21 +1,40 @@
 context("findSimilarName")
 
 test_that("verifies findSimilarName", {
-   a <- "xyz"
-   b <- "Xyz"
-   c <- "xYz"
-   d <- "xYZ"
-   actual <- DYM:::findSimilarName(a, c(b, c, d))
-   expect_equal(actual, c(b, c))
+   x <- "xyz"
+   dist1 <- "Ayz"
+   dist2 <- "ABz"
+   dist3 <- "ABC"
+   actual <- DYM:::findSimilarName(x, c(dist1, dist2, dist3))
+   # threshold defaults to 2
+   expect_equal(actual, c(dist1, dist2))
 })
 
-test_that("verifies findSimilarName with threshold", {
-   a <- "xyz"
-   b <- "XYz"
-   c <- "xYZ"
-   d <- "XyZ"
-   actual <- DYM:::findSimilarName(a, c(b, c, d), threshold=1)
-   expect_equal(actual, character(0))
+test_that("verifies findSimilarName with threshold = 3", {
+   x <- "xyz"
+   dist1 <- "Ayz"
+   dist2 <- "ABz"
+   dist3 <- "ABC"
+   actual <- DYM:::findSimilarName(x, c(dist1, dist2, dist3), threshold=3)
+   expect_equal(actual, c(dist1, dist2, dist3))
+})
+
+test_that("verifies findSimilarName with threshold = 1", {
+   x <- "xyz"
+   dist1 <- "Ayz"
+   dist2 <- "ABz"
+   dist3 <- "ABC"
+   actual <- DYM:::findSimilarName(x, c(dist1, dist2, dist3), threshold=1)
+   expect_equal(actual, dist1)
+})
+
+test_that("verifies findSimilarName with threshold = 0", {
+   x <- "xyz"
+   dist1 <- "Ayz"
+   dist2 <- "ABz"
+   dist3 <- "ABC"
+   actual <- DYM:::findSimilarName(x, c(dist1, dist2, dist3), threshold=0)
+   expect_equal(actual, character())
 })
 
 test_that("no result if x = NA", {
