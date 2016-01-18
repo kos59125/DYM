@@ -5,11 +5,15 @@ Version: 0.1.1
 Date: 2015-06-12
 Author: Kosei Abe
 Maintainer: Kosei Abe <mail@recyclebin.jp>
-Description:
-   Add a "Did You Mean" feature to the R interactive.
-   With this package, error messages for misspelled input of variable names or package names
-   suggest what you really want to do in addition to notification of the mistake.
+Description: Add a "Did You Mean" feature to the R interactive. With this
+    package, error messages for misspelled input of variable names or package names
+    suggest what you really want to do in addition to notification of the mistake.
 License: BSD_3_clause + file LICENSE
 BugReports: https://github.com/kos59125/DYM/issues
-Suggests: testthat
-Encoding:UTF-8
+Imports: 
+    stats,
+    utils
+Suggests:
+    testthat
+Encoding: UTF-8
+RoxygenNote: 5.0.1
