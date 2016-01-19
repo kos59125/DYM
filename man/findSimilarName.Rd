@@ -5,7 +5,7 @@
 \title{Looks for approximate matches to \code{x} (the first argument)
 within \code{name} (the second) argument.}
 \usage{
-findSimilarName(x, names, threshold = 2, max_n = 10)
+findSimilarName(x, names, threshold = 2, max_n = 10, ignoreCase = FALSE)
 }
 \arguments{
 \item{x}{A string giving the (misspelt) name to search for.}
@@ -15,6 +15,8 @@ findSimilarName(x, names, threshold = 2, max_n = 10)
 \item{threshold}{The maximum distance between the misspell (\code{x}) and the correct answer (in \code{name}).}
 
 \item{max_n}{An integer limiting the number of results.  Passed to \code{\link[utils]{head}}.}
+
+\item{ignoreCase}{A logical value indicating whether differences in case should be ignored when matching.  Passed to \code{\link[utils]{adist}}.}
 }
 \description{
 Looks for approximate matches to \code{x} (the first argument)
@@ -35,6 +37,9 @@ DYM:::findSimilarName(x, names, threshold = 3, max_n = Inf)
 
 # Negative max_n returns all hits except the last max_n
 DYM:::findSimilarName(x, names, threshold = 3, max_n = -40)
+
+# Set ignoreCase = TRUE to get more matches that differ by letter case
+DYM:::findSimilarName(x, names, ignoreCase = TRUE)
 }
 }
 \seealso{

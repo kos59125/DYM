@@ -6,12 +6,14 @@
 \alias{DYM-package}
 \title{DYM}
 \usage{
-DYM(threshold = 2, max_n = 10)
+DYM(threshold = 2, max_n = 10, ignoreCase = FALSE)
 }
 \arguments{
 \item{threshold}{The maximum distance between the misspell (\code{x}) and the correct answer (in \code{name}).}
 
 \item{max_n}{An integer limiting the number of results.  Passed to \code{\link[utils]{head}}.}
+
+\item{ignoreCase}{A logical value indicating whether differences in case should be ignored when matching.  Passed to \code{\link[utils]{adist}}.}
 }
 \description{
 You might mistype an object name.
@@ -22,11 +24,11 @@ the function tries to tell you the name of the correct name that you meant.
 }
 \examples{
 \dontrun{
-options(error = DYM::DYM()
+options(error = DYM::DYM())
 logg(10)
 
-# For fewer or more suggestions, change threshold and max_n
-options(error = DYM::DYM(threshold = 3, max_n = 25))
+# For fewer or more suggestions, change threshold, max_n and ignoreCase
+options(error = DYM::DYM(threshold = 3, max_n = 25, ignoreCase = TRUE))
 logg(10)
 }
 }

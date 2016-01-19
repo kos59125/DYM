@@ -12,7 +12,6 @@ test_that("verifies findSimilarName", {
 
 # threshold ---------------------------------------------------------------
 
-
 test_that("verifies findSimilarName with threshold = 3", {
    x <- "xyz"
    dist1 <- "Ayz"
@@ -41,7 +40,6 @@ test_that("verifies findSimilarName with threshold = 0", {
 })
 
 # NAs ---------------------------------------------------------------------
-
 
 test_that("no result if x = NA", {
    actual <- DYM:::findSimilarName(NA, c("x", "y"))
@@ -72,4 +70,23 @@ test_that("verifies findSimilarName with max_n -ve and < n results", {
    actual <- DYM:::findSimilarName(x, choices, max_n = -2)
    expect_equal(actual, choices[1:5])
 })
+
+# ignoreCase --------------------------------------------------------------
+
+test_that("verifies findSimilarName with ignoreCase = FALSE", {
+   x <- "xyz"
+   changeCase <- c("Xyz", "XYz", "XYZ")
+   changeLetter <- c("ayz", "abz", "abc")
+   actual <- DYM:::findSimilarName(x, c(changeCase, changeLetter))
+   expect_equal(actual, c(changeCase[1], changeLetter[1], changeCase[2], changeLetter[2]))
+})
+
+test_that("verifies findSimilarName with ignoreCase = TRUE", {
+   x <- "xyz"
+   changeCase <- c("Xyz", "XYz", "XYZ")
+   changeLetter <- c("ayz", "abz", "abc")
+   actual <- DYM:::findSimilarName(x, c(changeCase, changeLetter), ignoreCase = TRUE)
+   expect_equal(actual, c(changeCase, changeLetter[1:2]))
+})
+
 
