@@ -16,7 +16,7 @@ NULL
 #'    An integer limiting the number of results.  Passed to \code{\link[utils]{head}}.
 #' @examples 
 #' \dontrun{
-#' options(error = DYM::DYM()
+#' options(error = DYM::DYM())
 #' logg(10)
 #' 
 #' # For fewer or more suggestions, change threshold and max_n
