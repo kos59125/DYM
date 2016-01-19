@@ -22,7 +22,11 @@ the function tries to tell you the name of the correct name that you meant.
 }
 \examples{
 \dontrun{
-options(error = DYM::DYM)
+options(error = DYM::DYM()
+logg(10)
+
+# For fewer or more suggestions, change threshold and max_n
+options(error = DYM::DYM(threshold = 3, max_n = 25))
 logg(10)
 }
 }

@@ -16,23 +16,33 @@ NULL
 #'    An integer limiting the number of results.  Passed to \code{\link[utils]{head}}.
 #' @examples 
 #' \dontrun{
-#' options(error = DYM::DYM)
+#' options(error = DYM::DYM()
+#' logg(10)
+#' 
+#' # For fewer or more suggestions, change threshold and max_n
+#' options(error = DYM::DYM(threshold = 3, max_n = 25))
 #' logg(10)
 #' }
 #' @export
-DYM <- function(threshold = 2, max_n = 10) {
-   missingVariable <- getMissingVariable()
-   if (!is.na(missingVariable)) {
-      envir <- attr(missingVariable, "package")
-      if (is.null(envir)) {
-         envir <- .GlobalEnv
-      }
-      availableVariables <- getNames(class(missingVariable), envir)
-      names <- findSimilarName(missingVariable, availableVariables, threshold, max_n)
-      if (length(names) > 0L) {
-         message <- ngettext(length(names), "Did you mean: %s", "Did you mean: [%s]", domain="R-DYM")
-         hints <- sapply(names, sprintf, fmt="'%s'")  # sQuote might be better
-         message(sprintf(message, paste(hints, collapse=", ")))
+DYM <- function(threshold = 2, max_n = 10)
+{
+   threshold <- force(threshold)
+   max_n <- force(max_n)
+   function()
+   {
+      missingVariable <- getMissingVariable()
+      if (!is.na(missingVariable)) {
+         envir <- attr(missingVariable, "package")
+         if (is.null(envir)) {
+            envir <- .GlobalEnv
+         }
+         availableVariables <- getNames(class(missingVariable), envir)
+         names <- findSimilarName(missingVariable, availableVariables, threshold, max_n)
+         if (length(names) > 0L) {
+            message <- ngettext(length(names), "Did you mean: %s", "Did you mean: [%s]", domain="R-DYM")
+            hints <- sapply(names, sprintf, fmt="'%s'")  # sQuote might be better
+            message(sprintf(message, paste(hints, collapse=", ")))
+         }
       }
    }
 }
