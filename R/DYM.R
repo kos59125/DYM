@@ -30,6 +30,7 @@ DYM <- function(threshold = 2, max_n = 10, ignoreCase = FALSE)
 {
    threshold <- force(threshold)
    max_n <- force(max_n)
+   ignoreCase <- force(ignoreCase)
    function()
    {
       missingVariable <- getMissingVariable()
