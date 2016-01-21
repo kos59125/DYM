@@ -4,6 +4,7 @@
 #'    The mode of misspelled name.
 #' @param envir
 #'    The base environment to search variables.
+#' @importFrom utils installed.packages
 getNames <- function(mode, envir=.GlobalEnv){
    ## library not found
    if (mode == "lib") {
