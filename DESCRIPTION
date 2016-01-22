@@ -1,7 +1,7 @@
 Package: DYM
 Type: Package
 Title: Did You Mean?
-Version: 0.1.2
+Version: 0.2
 Date: 2016-01-19
 Author: Kosei Abe [aut, cre], Richard Cotton [ctb]
 Maintainer: Kosei Abe <mail@recyclebin.jp>

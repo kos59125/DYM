@@ -29,8 +29,8 @@ Examples
 
 ```r
 > library(DYM)
-Run options(error = DYM) to enable 'Did you mean' feature
-> options(error = DYM)
+Run options(error = DYM()) to enable 'Did you mean' feature
+> options(error = DYM())
 > t_test
 Error: object 't_test' not found
 Did you mean: 't.test'
@@ -46,8 +46,10 @@ If you have `~/.Rprofile` file to load on startup,
 append the following line to enable the feature:
 
 ```r
-options(error = DYM::DYM)
+options(error = DYM::DYM())
 ```
+
+See `help(DYM)` for function parameters.
 
 How does this work?
 -------------------

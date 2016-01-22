@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: DYM 0.1\n"
-"POT-Creation-Date: 2015-02-11 23:16\n"
+"Project-Id-Version: DYM 0.2\n"
+"POT-Creation-Date: 2016-01-22 17:44\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,15 +13,22 @@ msgstr ""
 msgid ","
 msgstr ""
 
-msgid "Run options(error = DYM) to enable 'Did you mean' feature"
+msgid "could not find function \"%s\""
+msgstr ""
+
+msgid "object '%s' not found"
+msgstr ""
+
+msgid "there is no package called %s"
+msgstr ""
+
+msgid "'%s' is not an exported object from 'namespace:%s'"
+msgstr ""
+
+msgid "Run options(error = DYM()) to enable 'Did you mean' feature"
 msgstr ""
 
 msgid        "Did you mean: %s"
 msgid_plural "Did you mean: [%s]"
-msgstr[0]    ""
-msgstr[1]    ""
-
-msgid        "object '%s' not found"
-msgid_plural ""
 msgstr[0]    ""
 msgstr[1]    ""
